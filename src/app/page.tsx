@@ -61,19 +61,21 @@ function SectionHeading({ bg, text, rotate = "-rotate-1" }: { bg: string; text: 
 
 function AnimatedProductGrid({ products }: { products: typeof allProducts }) {
   return (
-    <motion.div
-      className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-8"
-      variants={staggerContainer}
-      initial="hidden"
-      whileInView="show"
-      viewport={{ once: true, amount: 0.1 }}
-    >
-      {products.map((product, i) => (
-        <motion.div key={i} variants={fadeUp}>
-          <ProductCard {...product} />
-        </motion.div>
-      ))}
-    </motion.div>
+    <div className="w-full overflow-x-auto pb-8 hide-scrollbar -mx-4 px-4 md:mx-0 md:px-0">
+      <motion.div
+        className="flex md:grid md:grid-cols-4 gap-4 md:gap-8 w-max md:w-full"
+        variants={staggerContainer}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.1 }}
+      >
+        {products.map((product, i) => (
+          <motion.div key={i} variants={fadeUp} className="w-[160px] xs:w-[180px] sm:w-[220px] md:w-auto flex-shrink-0">
+            <ProductCard {...product} />
+          </motion.div>
+        ))}
+      </motion.div>
+    </div>
   );
 }
 
