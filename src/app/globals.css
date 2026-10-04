@@ -30,11 +30,11 @@ body {
 
 @layer utilities {
   .storybook-card {
-    @apply bg-white rounded-3xl border-4 border-ink shadow-[6px_6px_0_0_var(--color-ink)] overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:shadow-[10px_10px_0_0_var(--color-ink)];
+    @apply bg-white rounded-3xl border border-gray-100 shadow-sm overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-xl;
   }
   
   .storybook-button {
-    @apply inline-flex items-center justify-center font-heading text-xl font-bold rounded-2xl border-4 border-ink shadow-[4px_4px_0_0_var(--color-ink)] transition-all duration-200 hover:-translate-y-1 hover:shadow-[6px_6px_0_0_var(--color-ink)] active:translate-y-[2px] active:shadow-none;
+    @apply inline-flex items-center justify-center font-heading text-xl font-bold rounded-2xl transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg active:translate-y-[1px] active:shadow-md;
   }
   
   .hide-scrollbar {

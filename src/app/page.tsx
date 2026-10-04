@@ -52,7 +52,7 @@ function SectionHeading({ bg, text, rotate = "-rotate-1" }: { bg: string; text: 
       transition={{ duration: 0.5, ease: "easeOut" }}
       className="mb-6 md:mb-10"
     >
-      <span className={`inline-block ${bg} px-4 md:px-6 py-1.5 md:py-2 rounded-2xl border-4 border-ink shadow-[4px_4px_0_0_var(--color-ink)] ${rotate}`}>
+      <span className={`inline-block ${bg} px-4 md:px-6 py-1.5 md:py-2 rounded-2xl shadow-sm ${rotate}`}>
         <h2 className="font-heading font-black text-2xl md:text-4xl text-ink">{text}</h2>
       </span>
     </motion.div>
@@ -82,10 +82,10 @@ function AnimatedProductGrid({ products }: { products: typeof allProducts }) {
 function FAQItem({ question, answer }: { question: string, answer: string }) {
   const [isOpen, setIsOpen] = useState(false);
   return (
-    <div className="bg-white border-4 border-ink shadow-[4px_4px_0_0_var(--color-ink)] rounded-2xl mb-4 overflow-hidden">
+    <div className="bg-white shadow-md rounded-2xl mb-4 overflow-hidden border border-gray-100">
       <button 
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full px-4 md:px-6 py-4 flex items-center justify-between font-heading font-bold text-lg md:text-2xl text-ink text-left hover:bg-cream transition-colors"
+        className="w-full px-4 md:px-6 py-4 flex items-center justify-between font-heading font-bold text-lg md:text-2xl text-ink text-left hover:bg-gray-50 transition-colors"
       >
         {question}
         <motion.div animate={{ rotate: isOpen ? 180 : 0 }}><ChevronDown strokeWidth={3} /></motion.div>
@@ -135,17 +135,17 @@ export default function Home() {
         >
           {/* Pulsing honey blob behind card */}
           <motion.div
-            className="absolute -inset-10 bg-honey/30 rounded-full blur-3xl -z-10"
+            className="absolute -inset-10 bg-honey/20 rounded-full blur-3xl -z-10"
             animate={{ scale: [1, 1.15, 1], opacity: [0.4, 0.7, 0.4] }}
             transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
           />
 
           <motion.div
             variants={popIn}
-            className="glass-panel p-5 sm:p-8 md:p-14 border-[4px] border-ink shadow-[14px_14px_0_0_var(--color-ink)] relative bg-white w-full"
+            className="glass-panel p-5 sm:p-8 md:p-14 shadow-2xl relative bg-white/90 backdrop-blur-sm w-full rounded-3xl border border-white"
           >
             <motion.div
-              className="absolute -top-6 left-1/2 -translate-x-1/2 bg-coral text-white font-heading font-bold px-6 py-2 rounded-full border-[4px] border-ink shadow-[4px_4px_0_0_var(--color-ink)] z-20 whitespace-nowrap text-xl"
+              className="absolute -top-6 left-1/2 -translate-x-1/2 bg-coral text-white font-heading font-bold px-6 py-2 rounded-full shadow-lg z-20 whitespace-nowrap text-xl border border-coral/20"
               animate={{ rotate: [2, -2, 2] }}
               transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
             >
@@ -186,7 +186,7 @@ export default function Home() {
       </section>
 
       {/* ─── WHY CHOOSE US (BENEFITS) ─── */}
-      <section className="px-4 py-16 md:py-24 relative z-10 border-t-4 border-ink bg-white">
+      <section className="px-4 py-16 md:py-24 relative z-10 bg-white">
         <div className="container mx-auto max-w-6xl">
           <SectionHeading bg="bg-mint" text="Why Parents Love Us 💛" rotate="rotate-2" />
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
@@ -201,9 +201,9 @@ export default function Home() {
                 initial="hidden" 
                 whileInView="show" 
                 viewport={{ once: true }} 
-                className={`${benefit.bg} p-8 rounded-[2rem] border-4 border-ink shadow-[8px_8px_0_0_var(--color-ink)] flex flex-col items-center text-center`}
+                className={`${benefit.bg} p-8 rounded-[2rem] shadow-lg flex flex-col items-center text-center bg-opacity-30 border border-white backdrop-blur-sm`}
               >
-                <div className="text-5xl md:text-6xl mb-6 bg-white w-20 h-20 md:w-24 md:h-24 rounded-full border-4 border-ink flex items-center justify-center shadow-[4px_4px_0_0_var(--color-ink)]">
+                <div className="text-5xl md:text-6xl mb-6 bg-white w-20 h-20 md:w-24 md:h-24 rounded-full shadow-sm flex items-center justify-center">
                   {benefit.icon}
                 </div>
                 <h3 className="font-heading font-black text-2xl mb-4 text-ink">{benefit.title}</h3>
@@ -215,7 +215,7 @@ export default function Home() {
       </section>
 
       {/* ─── SHOP: LEARNING BINDERS ─── */}
-      <section id="shop-all" className="px-4 py-16 relative z-10 bg-sky/20 border-t-4 border-ink">
+      <section id="shop-all" className="px-4 py-16 relative z-10 bg-sky/10">
         <div className="container mx-auto max-w-7xl">
           <SectionHeading bg="bg-honey" text="Learning Binders ✍️" rotate="-rotate-1" />
           <AnimatedProductGrid products={allProducts.filter(p => p.category === "Learning Binders")} />
@@ -223,7 +223,7 @@ export default function Home() {
       </section>
 
       {/* ─── SHOP: FLASH CARDS ─── */}
-      <section className="px-4 py-16 relative z-10 bg-mint/20 border-t-4 border-ink">
+      <section className="px-4 py-16 relative z-10 bg-mint/10">
         <div className="container mx-auto max-w-7xl">
           <SectionHeading bg="bg-mint" text="Phonics & Flash Cards 🔤" rotate="rotate-1" />
           <AnimatedProductGrid products={allProducts.filter(p => p.category === "Flash Cards")} />
@@ -231,7 +231,7 @@ export default function Home() {
       </section>
 
       {/* ─── SHOP: ADAPTIVE BOOKS ─── */}
-      <section className="px-4 py-16 relative z-10 bg-lilac/20 border-t-4 border-ink">
+      <section className="px-4 py-16 relative z-10 bg-lilac/10">
         <div className="container mx-auto max-w-7xl">
           <SectionHeading bg="bg-coral" text="Adaptive Sentence Builders 🧠" rotate="-rotate-1" />
           <AnimatedProductGrid products={allProducts.filter(p => p.category === "Adaptive Books")} />
@@ -239,17 +239,17 @@ export default function Home() {
       </section>
 
       {/* ─── HOW TO ORDER ─── */}
-      <section id="how-to-order" className="px-4 py-16 relative z-10 bg-white border-t-4 border-ink">
+      <section id="how-to-order" className="px-4 py-16 relative z-10 bg-white">
         <div className="container mx-auto max-w-5xl">
           <motion.div
             initial={{ opacity: 0, y: 50, rotate: -1 }}
             whileInView={{ opacity: 1, y: 0, rotate: 0 }}
             viewport={{ once: true, amount: 0.4 }}
             transition={{ duration: 0.6, type: "spring", stiffness: 120 }}
-            className="bg-sky rounded-[3rem] p-8 md:p-12 flex flex-col md:flex-row items-center gap-8 border-4 border-ink shadow-[8px_8px_0_0_var(--color-ink)]"
+            className="bg-sky/20 rounded-[3rem] p-8 md:p-12 flex flex-col md:flex-row items-center gap-8 shadow-lg border border-white"
           >
             <motion.div
-              className="w-24 h-24 bg-white border-4 border-ink rounded-full flex items-center justify-center text-5xl shadow-[4px_4px_0_0_var(--color-ink)] flex-shrink-0"
+              className="w-24 h-24 bg-white rounded-full flex items-center justify-center text-5xl shadow-md flex-shrink-0"
               animate={{ rotate: [6, -6, 6] }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
             >
@@ -270,7 +270,7 @@ export default function Home() {
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.15, duration: 0.5 }}
                 >
-                  <span className="bg-white px-3 py-1 rounded-lg border-4 border-ink shadow-[2px_2px_0_0_var(--color-ink)] flex-shrink-0">{num}</span>
+                  <span className="bg-white px-3 py-1 rounded-lg shadow-sm flex-shrink-0 text-coral">{num}</span>
                   {text}
                 </motion.p>
               ))}
@@ -280,21 +280,21 @@ export default function Home() {
       </section>
 
       {/* ─── ABOUT THE FOUNDER ─── */}
-      <section className="px-4 py-16 md:py-24 relative z-10 border-t-4 border-ink bg-cream">
+      <section className="px-4 py-16 md:py-24 relative z-10 bg-[#FFFBF0]">
         <div className="container mx-auto max-w-5xl">
           <motion.div 
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="bg-white rounded-[3rem] p-8 md:p-16 border-4 border-ink shadow-[12px_12px_0_0_var(--color-ink)] flex flex-col md:flex-row gap-12 items-center"
+            className="bg-white rounded-[3rem] p-8 md:p-16 shadow-xl flex flex-col md:flex-row gap-12 items-center"
           >
             <div className="w-full md:w-1/3 flex justify-center">
-              <div className="relative w-48 h-48 md:w-64 md:h-64 bg-coral rounded-[2rem] border-4 border-ink overflow-hidden shadow-[8px_8px_0_0_var(--color-ink)] rotate-3 flex items-center justify-center">
+              <div className="relative w-48 h-48 md:w-64 md:h-64 bg-coral/20 rounded-[2rem] overflow-hidden shadow-md rotate-3 flex items-center justify-center">
                 <span className="text-8xl">👩‍🏫</span>
               </div>
             </div>
             <div className="w-full md:w-2/3">
-              <div className="inline-block bg-honey px-4 py-1 rounded-xl border-4 border-ink shadow-[2px_2px_0_0_var(--color-ink)] mb-6 -rotate-2">
+              <div className="inline-block bg-honey/20 px-4 py-1 rounded-xl shadow-sm mb-6 -rotate-2">
                 <span className="font-heading font-black text-xl text-ink">Hello, I'm Heebal 👋</span>
               </div>
               <h2 className="font-heading font-black text-3xl md:text-5xl text-ink mb-6">Turning struggle into smiles.</h2>
@@ -310,14 +310,14 @@ export default function Home() {
       </section>
 
       {/* ─── REVIEWS ─── */}
-      <section className="px-4 py-16 md:py-24 relative z-10 border-t-4 border-ink bg-coral">
+      <section className="px-4 py-16 md:py-24 relative z-10 bg-coral/5">
         <div className="container mx-auto max-w-6xl">
           <SectionHeading bg="bg-white" text="Happy Parents 💬" rotate="rotate-1" />
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mt-12">
             {[
-              { name: "Sarah K.", review: "Absolutely brilliant! My 4-year-old wouldn't hold a pencil, but now he traces his letters in the Bee Binder every morning.", rating: "⭐⭐⭐⭐⭐", bg: "bg-sky" },
-              { name: "Fatima A.", review: "The quality is amazing. It's so durable, and the write-and-wipe feature saves so much paper. Highly recommend!", rating: "⭐⭐⭐⭐⭐", bg: "bg-honey" },
-              { name: "Zainab R.", review: "The Phonics flashcards completely changed how my daughter reads. She loves the bright colors and illustrations.", rating: "⭐⭐⭐⭐⭐", bg: "bg-lilac" }
+              { name: "Sarah K.", review: "Absolutely brilliant! My 4-year-old wouldn't hold a pencil, but now he traces his letters in the Bee Binder every morning.", rating: "⭐⭐⭐⭐⭐", bg: "bg-sky/20" },
+              { name: "Fatima A.", review: "The quality is amazing. It's so durable, and the write-and-wipe feature saves so much paper. Highly recommend!", rating: "⭐⭐⭐⭐⭐", bg: "bg-honey/20" },
+              { name: "Zainab R.", review: "The Phonics flashcards completely changed how my daughter reads. She loves the bright colors and illustrations.", rating: "⭐⭐⭐⭐⭐", bg: "bg-lilac/20" }
             ].map((rev, i) => (
               <motion.div 
                 key={i} 
@@ -325,7 +325,7 @@ export default function Home() {
                 initial="hidden" 
                 whileInView="show" 
                 viewport={{ once: true }} 
-                className={`${rev.bg} p-6 md:p-8 rounded-[2rem] border-4 border-ink shadow-[8px_8px_0_0_var(--color-ink)] transform ${i % 2 === 0 ? 'rotate-1' : '-rotate-1'}`}
+                className={`${rev.bg} p-6 md:p-8 rounded-[2rem] shadow-md transform ${i % 2 === 0 ? 'rotate-1' : '-rotate-1'} border border-white`}
               >
                 <div className="text-xl md:text-2xl mb-4">{rev.rating}</div>
                 <p className="font-sans font-bold text-lg md:text-xl text-ink mb-6 leading-relaxed">"{rev.review}"</p>
@@ -337,7 +337,7 @@ export default function Home() {
       </section>
 
       {/* ─── FAQs ─── */}
-      <section className="px-4 py-16 md:py-24 relative z-10 border-t-4 border-ink bg-[#FFFBF0]">
+      <section className="px-4 py-16 md:py-24 relative z-10 bg-white">
         <div className="container mx-auto max-w-3xl">
           <div className="flex justify-center mb-10">
             <SectionHeading bg="bg-mint" text="Got Questions? ❓" rotate="-rotate-2" />
@@ -364,14 +364,14 @@ export default function Home() {
       </section>
 
       {/* ─── FINAL CTA ─── */}
-      <section className="flex flex-col items-center justify-center text-center px-4 py-12 md:py-24 bg-honey relative z-10 border-t-4 border-ink">
+      <section className="flex flex-col items-center justify-center text-center px-4 py-12 md:py-24 bg-honey/20 relative z-10">
         <motion.div
           initial={{ opacity: 0, scale: 0.8, rotate: -2 }}
           whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
           viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 0.7, type: "spring", stiffness: 100 }}
           whileHover={{ scale: 1.03, rotate: 1 }}
-          className="glass-panel p-6 md:p-16 border-[4px] border-ink shadow-[8px_8px_0_0_var(--color-ink)] md:shadow-[16px_16px_0_0_var(--color-ink)] bg-white max-w-4xl mx-auto w-full"
+          className="glass-panel p-6 md:p-16 shadow-2xl bg-white max-w-4xl mx-auto w-full rounded-3xl border border-white"
         >
           <motion.h2
             className="font-heading font-black text-3xl md:text-7xl text-ink mb-4 md:mb-6"
@@ -382,7 +382,7 @@ export default function Home() {
           </motion.h2>
           <p className="font-handwriting text-xl md:text-3xl text-ink/70 mb-6 md:mb-8">Your little learner is waiting!</p>
           <motion.div whileHover={{ scale: 1.08 }} whileTap={{ scale: 0.95 }}>
-            <Button href="/cart" variant="primary" className="text-lg md:text-2xl px-8 md:px-12 py-4 md:py-6 bg-coral text-white border-[4px] border-ink shadow-[4px_4px_0_0_var(--color-ink)]">
+            <Button href="/cart" variant="primary" className="text-lg md:text-2xl px-8 md:px-12 py-4 md:py-6 bg-coral text-white">
               View My Cart 🛒
             </Button>
           </motion.div>

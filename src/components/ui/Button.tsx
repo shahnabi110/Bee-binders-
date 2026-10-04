@@ -13,11 +13,11 @@ export function Button({ children, href, className = "", variant = "primary", di
   if (disabled) {
     variantStyles = "bg-gray-300 text-gray-500 cursor-not-allowed shadow-none border-gray-400";
   } else if (variant === "primary") {
-    variantStyles = "bg-honey text-ink";
+    variantStyles = "bg-honey text-ink border border-honey";
   } else if (variant === "secondary") {
-    variantStyles = "bg-sky text-ink";
+    variantStyles = "bg-sky text-ink border border-sky";
   } else if (variant === "outline") {
-    variantStyles = "bg-cream border-4 border-ink text-ink hover:bg-honey/20";
+    variantStyles = "bg-white border border-gray-200 text-ink hover:bg-gray-50";
   }
 
   const combinedClasses = `${baseStyles} ${variantStyles} ${className}`;
