@@ -6,15 +6,25 @@ import { ShoppingBag, Search, Menu, X } from "lucide-react";
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
 
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 10);
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+      const total = document.documentElement.scrollHeight - window.innerHeight;
+      setScrollProgress(total > 0 ? (window.scrollY / total) * 100 : 0);
+    };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white/98 backdrop-blur-md shadow-md' : 'bg-white'} border-b border-gray-100`}>
+      {/* Scroll Progress Bar */}
+      <div
+        className="absolute bottom-0 left-0 h-[3px] bg-gradient-to-r from-honey via-coral to-honey transition-all duration-100 z-50"
+        style={{ width: `${scrollProgress}%` }}
+      />
       
       {/* Main row */}
       <div className="container mx-auto px-4 flex items-center justify-between gap-3 h-16">

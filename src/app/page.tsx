@@ -117,6 +117,16 @@ function FAQItem({ question, answer }: { question: string, answer: string }) {
 }
 
 export default function Home() {
+  const [activeTab, setActiveTab] = useState("All");
+
+  const filteredProducts = activeTab === "All"
+    ? allProducts
+    : activeTab === "Learning Binders ✍️"
+    ? allProducts.filter(p => p.category === "Learning Binders")
+    : activeTab === "Flash Cards 🔤"
+    ? allProducts.filter(p => p.category === "Flash Cards")
+    : allProducts.filter(p => p.category === "Adaptive Books");
+
   return (
     <div className="flex flex-col relative w-full overflow-hidden bg-[#FFFBF0]">
 
@@ -224,27 +234,54 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ─── SHOP: LEARNING BINDERS ─── */}
-      <section id="shop-all" className="px-4 py-16 relative z-10 bg-sky/10">
+      {/* ─── SHOP: ALL PRODUCTS WITH FILTER TABS ─── */}
+      <section id="shop-all" className="px-4 py-16 relative z-10 bg-white">
         <div className="container mx-auto max-w-7xl">
-          <SectionHeading bg="bg-honey" text="Learning Binders ✍️" rotate="-rotate-1" />
-          <AnimatedProductGrid products={allProducts.filter(p => p.category === "Learning Binders")} />
-        </div>
-      </section>
+          <SectionHeading bg="bg-honey" text="Shop Our Collection 🛍️" rotate="-rotate-1" />
 
-      {/* ─── SHOP: FLASH CARDS ─── */}
-      <section className="px-4 py-16 relative z-10 bg-mint/10">
-        <div className="container mx-auto max-w-7xl">
-          <SectionHeading bg="bg-mint" text="Phonics & Flash Cards 🔤" rotate="rotate-1" />
-          <AnimatedProductGrid products={allProducts.filter(p => p.category === "Flash Cards")} />
-        </div>
-      </section>
+          {/* Filter Tabs */}
+          <div className="flex gap-2 md:gap-4 overflow-x-auto hide-scrollbar pb-3 mb-8">
+            {["All", "Learning Binders ✍️", "Flash Cards 🔤", "Adaptive Books 🧠"].map((tab) => (
+              <motion.button
+                key={tab}
+                onClick={() => setActiveTab(tab)}
+                whileTap={{ scale: 0.95 }}
+                className={`flex-shrink-0 px-4 md:px-6 py-2 md:py-2.5 rounded-full font-heading font-bold text-sm md:text-lg transition-all duration-300
+                  ${activeTab === tab
+                    ? "bg-coral text-white shadow-md scale-105"
+                    : "bg-gray-100 text-ink/60 hover:bg-gray-200"
+                  }`}
+              >
+                {tab}
+              </motion.button>
+            ))}
+          </div>
 
-      {/* ─── SHOP: ADAPTIVE BOOKS ─── */}
-      <section className="px-4 py-16 relative z-10 bg-lilac/10">
-        <div className="container mx-auto max-w-7xl">
-          <SectionHeading bg="bg-coral" text="Adaptive Sentence Builders 🧠" rotate="-rotate-1" />
-          <AnimatedProductGrid products={allProducts.filter(p => p.category === "Adaptive Books")} />
+          {/* Product Grid */}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeTab}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.35 }}
+            >
+              <div className="w-full overflow-x-auto pb-8 hide-scrollbar -mx-4 px-4 md:mx-0 md:px-0">
+                <motion.div
+                  className="flex md:grid md:grid-cols-4 gap-4 md:gap-6 w-max md:w-full"
+                  variants={staggerContainer}
+                  initial="hidden"
+                  animate="show"
+                >
+                  {filteredProducts.map((product, i) => (
+                    <motion.div key={product.slug} variants={fadeUp} className="w-[160px] xs:w-[180px] sm:w-[220px] md:w-auto flex-shrink-0">
+                      <ProductCard {...product} />
+                    </motion.div>
+                  ))}
+                </motion.div>
+              </div>
+            </motion.div>
+          </AnimatePresence>
         </div>
       </section>
 
