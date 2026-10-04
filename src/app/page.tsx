@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import { Button } from "@/components/ui/Button";
 import { ProductCard } from "@/components/shop/ProductCard";
 
@@ -27,19 +27,19 @@ const floatingEmojis = [
   { emoji: "⭐", top: "50%", left: "2%", delay: 0.7 },
 ];
 
-const staggerContainer = {
+const staggerContainer: Variants = {
   hidden: {},
   show: { transition: { staggerChildren: 0.12 } },
 };
 
-const fadeUp = {
+const fadeUp: Variants = {
   hidden: { opacity: 0, y: 40 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" as const } },
 };
 
-const popIn = {
+const popIn: Variants = {
   hidden: { opacity: 0, scale: 0.7, rotate: -5 },
-  show: { opacity: 1, scale: 1, rotate: 0, transition: { type: "spring", stiffness: 300, damping: 20 } },
+  show: { opacity: 1, scale: 1, rotate: 0, transition: { type: "spring" as const, stiffness: 300, damping: 20 } },
 };
 
 function SectionHeading({ bg, text, rotate = "-rotate-1" }: { bg: string; text: string; rotate?: string }) {
