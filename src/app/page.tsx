@@ -17,14 +17,14 @@ const allProducts = [
 ];
 
 const floatingEmojis = [
-  { emoji: "📚", top: "8%",  left: "1%",  delay: 0   },
-  { emoji: "✏️", top: "20%", left: "92%", delay: 0.5 },
-  { emoji: "🌟", top: "38%", left: "1%",  delay: 1   },
-  { emoji: "🎨", top: "55%", left: "92%", delay: 1.5 },
-  { emoji: "🐝", top: "70%", left: "1%",  delay: 0.8 },
-  { emoji: "🌈", top: "82%", left: "92%", delay: 1.2 },
-  { emoji: "🦋", top: "92%", left: "1%",  delay: 0.3 },
-  { emoji: "⭐", top: "45%", left: "92%", delay: 0.7 },
+  { emoji: "📚", top: "15%", left: "8%", delay: 0, size: "text-3xl md:text-5xl", opacity: "opacity-40 md:opacity-100" },
+  { emoji: "✏️", top: "28%", left: "82%", delay: 0.5, size: "text-2xl md:text-4xl", opacity: "opacity-50 md:opacity-100" },
+  { emoji: "🌟", top: "45%", left: "12%", delay: 1, size: "text-4xl md:text-6xl", opacity: "opacity-30 md:opacity-80" },
+  { emoji: "🎨", top: "65%", left: "85%", delay: 1.5, size: "text-3xl md:text-5xl", opacity: "opacity-40 md:opacity-100" },
+  { emoji: "🐝", top: "75%", left: "15%", delay: 0.8, size: "text-5xl md:text-7xl", opacity: "opacity-20 md:opacity-60" },
+  { emoji: "🌈", top: "10%", left: "75%", delay: 1.2, size: "text-4xl md:text-5xl", opacity: "opacity-30 md:opacity-90" },
+  { emoji: "🦋", top: "85%", left: "80%", delay: 0.3, size: "text-3xl md:text-4xl", opacity: "opacity-50 md:opacity-100" },
+  { emoji: "⭐", top: "55%", left: "78%", delay: 0.7, size: "text-2xl md:text-3xl", opacity: "opacity-40 md:opacity-100" },
 ];
 
 const staggerContainer: Variants = {
@@ -85,7 +85,7 @@ export default function Home() {
         {floatingEmojis.map((item, i) => (
           <motion.div
             key={i}
-            className="fixed text-4xl pointer-events-none z-0 select-none"
+            className={`fixed pointer-events-none z-0 select-none ${item.size} ${item.opacity}`}
             style={{ top: item.top, left: item.left }}
             animate={{ y: [0, -18, 0], rotate: [0, 8, -8, 0] }}
             transition={{ duration: 4 + i * 0.4, repeat: Infinity, delay: item.delay, ease: "easeInOut" as const }}
