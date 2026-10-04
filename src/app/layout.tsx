@@ -3,8 +3,6 @@ import { Baloo_2, Nunito, Caveat } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
-import { SuppressErrors } from "@/components/SuppressErrors";
-import { ClientWrapper } from "@/components/ClientWrapper";
 
 const baloo = Baloo_2({
   variable: "--font-baloo",
@@ -38,14 +36,11 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col font-sans bg-cream text-ink" suppressHydrationWarning>
-        <ClientWrapper>
-          <SuppressErrors />
           <Navbar />
-          <main className="flex-grow pt-24">
+          <main className="flex-grow pt-20 md:pt-24">
             {children}
           </main>
           <Footer />
-        </ClientWrapper>
       </body>
     </html>
   );

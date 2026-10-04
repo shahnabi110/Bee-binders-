@@ -80,18 +80,20 @@ export default function Home() {
   return (
     <div className="flex flex-col relative w-full overflow-hidden bg-[#FFFBF0]">
 
-      {/* Floating background emojis */}
-      {floatingEmojis.map((item, i) => (
-        <motion.div
-          key={i}
-          className="fixed text-4xl pointer-events-none z-0 select-none hidden lg:block"
-          style={{ top: item.top, left: item.left }}
-          animate={{ y: [0, -18, 0], rotate: [0, 8, -8, 0] }}
-          transition={{ duration: 4 + i * 0.4, repeat: Infinity, delay: item.delay, ease: "easeInOut" }}
-        >
-          {item.emoji}
-        </motion.div>
-      ))}
+      {/* Floating background emojis — desktop only */}
+      <div className="hidden lg:block">
+        {floatingEmojis.map((item, i) => (
+          <motion.div
+            key={i}
+            className="fixed text-4xl pointer-events-none z-0 select-none"
+            style={{ top: item.top, left: item.left }}
+            animate={{ y: [0, -18, 0], rotate: [0, 8, -8, 0] }}
+            transition={{ duration: 4 + i * 0.4, repeat: Infinity, delay: item.delay, ease: "easeInOut" as const }}
+          >
+            {item.emoji}
+          </motion.div>
+        ))}
+      </div>
 
       {/* ─── HERO ─── */}
       <section className="min-h-[80vh] flex flex-col items-center justify-center text-center px-4 relative z-10">
