@@ -17,14 +17,14 @@ const allProducts = [
 ];
 
 const floatingEmojis = [
-  { emoji: "📚", top: "12%", left: "5%", delay: 0 },
-  { emoji: "✏️", top: "25%", left: "90%", delay: 0.5 },
-  { emoji: "🌟", top: "60%", left: "8%", delay: 1 },
-  { emoji: "🎨", top: "70%", left: "88%", delay: 1.5 },
-  { emoji: "🐝", top: "40%", left: "93%", delay: 0.8 },
-  { emoji: "🌈", top: "15%", left: "80%", delay: 1.2 },
-  { emoji: "🦋", top: "80%", left: "3%", delay: 0.3 },
-  { emoji: "⭐", top: "50%", left: "2%", delay: 0.7 },
+  { emoji: "📚", top: "8%",  left: "1%",  delay: 0   },
+  { emoji: "✏️", top: "20%", left: "92%", delay: 0.5 },
+  { emoji: "🌟", top: "38%", left: "1%",  delay: 1   },
+  { emoji: "🎨", top: "55%", left: "92%", delay: 1.5 },
+  { emoji: "🐝", top: "70%", left: "1%",  delay: 0.8 },
+  { emoji: "🌈", top: "82%", left: "92%", delay: 1.2 },
+  { emoji: "🦋", top: "92%", left: "1%",  delay: 0.3 },
+  { emoji: "⭐", top: "45%", left: "92%", delay: 0.7 },
 ];
 
 const staggerContainer: Variants = {
@@ -80,8 +80,8 @@ export default function Home() {
   return (
     <div className="flex flex-col relative w-full overflow-hidden bg-[#FFFBF0]">
 
-      {/* Floating background emojis — desktop only */}
-      <div className="hidden lg:block">
+      {/* Floating background emojis */}
+      <div className="block">
         {floatingEmojis.map((item, i) => (
           <motion.div
             key={i}
