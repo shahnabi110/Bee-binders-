@@ -1,26 +1,39 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-background: #FFFBF0;
+  --color-foreground: #2B2A33;
+  
+  --color-honey: #F7C948;
+  --color-sky: #CFE8F7;
+  --color-mint: #CDEBD9;
+  --color-coral: #F28B6E;
+  --color-lilac: #E3D7F5;
+  --color-ink: #2B2A33;
+  --color-cream: #FFFBF0;
+
+  --font-sans: var(--font-nunito), ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-baloo), ui-sans-serif, system-ui, sans-serif;
+  --font-handwriting: var(--font-caveat), cursive;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+:root {
+  --background: var(--color-background);
+  --foreground: var(--color-foreground);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+}
+
+@layer utilities {
+  .storybook-card {
+    @apply bg-white rounded-3xl border-4 border-ink shadow-[6px_6px_0_0_var(--color-ink)] overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:shadow-[10px_10px_0_0_var(--color-ink)];
+  }
+  
+  .storybook-button {
+    @apply inline-flex items-center justify-center font-heading text-xl font-bold rounded-2xl border-4 border-ink shadow-[4px_4px_0_0_var(--color-ink)] transition-all duration-200 hover:-translate-y-1 hover:shadow-[6px_6px_0_0_var(--color-ink)] active:translate-y-[2px] active:shadow-none;
+  }
 }
