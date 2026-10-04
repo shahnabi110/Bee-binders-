@@ -9,12 +9,22 @@ import { ChevronDown } from "lucide-react";
 const allProducts = [
   { slug: "abc-writing-tracing-binder", name: "ABC Writing & Tracing Binder", price: 1200, ageRange: "3-5", category: "Learning Binders" },
   { slug: "write-and-wipe-bundle", name: "Write and Wipe Bundle", price: 1500, ageRange: "3-6", category: "Learning Binders" },
-  { slug: "3-letter-cvc-cards", name: "3 Letter (CVC) Picture Word Cards", price: 850, ageRange: "4-6", category: "Flash Cards" },
   { slug: "phonics-binder", name: "Complete Phonics Binder", price: 2100, ageRange: "4-7", category: "Learning Binders" },
+  { slug: "numbers-counting-binder", name: "123 Numbers & Counting", price: 1100, ageRange: "3-5", category: "Learning Binders" },
+  { slug: "shapes-colors-binder", name: "Shapes, Colors & Patterns", price: 1300, ageRange: "2-4", category: "Learning Binders" },
+  { slug: "urdu-haroof-binder", name: "Urdu Haroof-e-Tahajji Binder", price: 1400, ageRange: "4-6", category: "Learning Binders" },
+
+  { slug: "3-letter-cvc-cards", name: "3 Letter (CVC) Picture Word Cards", price: 850, ageRange: "4-6", category: "Flash Cards" },
   { slug: "strip-cards-blends", name: "Strip Cards for Blends & Word Families", price: 950, ageRange: "5-8", category: "Flash Cards" },
+  { slug: "sight-words-1", name: "Sight Words (Level 1)", price: 750, ageRange: "4-6", category: "Flash Cards" },
+  { slug: "action-verbs-cards", name: "Action Verbs Flash Cards", price: 800, ageRange: "3-6", category: "Flash Cards" },
+  { slug: "opposite-words-cards", name: "Opposite Words (Antonyms)", price: 800, ageRange: "4-7", category: "Flash Cards" },
+
   { slug: "what-he-needs-book", name: "What He Needs (Adaptive Book)", price: 1100, ageRange: "2-5", category: "Adaptive Books" },
   { slug: "prepositions-book", name: "Prepositions (Adaptive Book)", price: 1100, ageRange: "3-6", category: "Adaptive Books" },
   { slug: "urdu-jumle", name: "Urdu Sentence (Jumle) Builder", price: 1300, ageRange: "4-7", category: "Adaptive Books", condition: "Like New" },
+  { slug: "daily-routine", name: "My Daily Routine (Interactive)", price: 1200, ageRange: "3-6", category: "Adaptive Books" },
+  { slug: "emotions-feelings", name: "Emotions & Feelings Book", price: 1050, ageRange: "2-5", category: "Adaptive Books" },
 ];
 
 const floatingEmojis = [
