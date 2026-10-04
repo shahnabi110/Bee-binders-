@@ -4,6 +4,7 @@ import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
+import { CartProvider } from "@/context/CartContext";
 
 const baloo = Baloo_2({
   variable: "--font-baloo",
@@ -37,12 +38,14 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col font-sans bg-cream text-ink" suppressHydrationWarning>
+        <CartProvider>
           <Navbar />
           <main className="flex-grow pt-20 md:pt-24">
             {children}
           </main>
           <Footer />
           <WhatsAppButton />
+        </CartProvider>
       </body>
     </html>
   );
