@@ -71,18 +71,19 @@ function SectionHeading({ bg, text, rotate = "-rotate-1" }: { bg: string; text: 
 
 function AnimatedProductGrid({ products }: { products: typeof allProducts }) {
   return (
-    <motion.div
-      className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6"
-      variants={staggerContainer}
-      initial="hidden"
-      animate="show"
-    >
+    <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6 w-full">
       {products.map((product, i) => (
-        <motion.div key={product.slug} variants={fadeUp}>
+        <motion.div
+          key={product.slug}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: i * 0.06, duration: 0.4 }}
+        >
           <ProductCard {...product} />
         </motion.div>
       ))}
-    </motion.div>
+    </div>
   );
 }
 
@@ -232,8 +233,8 @@ export default function Home() {
       </section>
 
       {/* ─── SHOP: ALL PRODUCTS WITH FILTER TABS ─── */}
-      <section id="shop-all" className="px-4 py-16 relative z-10 bg-white">
-        <div className="container mx-auto max-w-7xl">
+      <section id="shop-all" className="px-4 py-16 relative z-10 bg-white overflow-hidden">
+        <div className="container mx-auto max-w-7xl w-full">
           <SectionHeading bg="bg-honey" text="Shop Our Collection 🛍️" rotate="-rotate-1" />
 
           {/* Filter Tabs */}
@@ -262,19 +263,18 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.35 }}
+              className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6 w-full"
             >
-              <motion.div
-                className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6"
-                variants={staggerContainer}
-                initial="hidden"
-                animate="show"
-              >
-                {filteredProducts.map((product) => (
-                  <motion.div key={product.slug} variants={fadeUp}>
-                    <ProductCard {...product} />
-                  </motion.div>
-                ))}
-              </motion.div>
+              {filteredProducts.map((product, i) => (
+                <motion.div
+                  key={product.slug}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: i * 0.06, duration: 0.4 }}
+                >
+                  <ProductCard {...product} />
+                </motion.div>
+              ))}
             </motion.div>
           </AnimatePresence>
         </div>
